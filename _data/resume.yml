@@ -1,0 +1,226 @@
+basics:
+  name: "4xeL"
+  label: "Cybersecurity Expert"
+  picture: /assets/img/seattle.png
+  email: "jesiel1990arthas@gmail.com"
+  phone: "(+593) 0992802922"
+  website: "https://helper593.github.io/"
+  summary: >
+    Hola mi nombre es Jhon mas conocido como 4xeL.
+    Soy Tecnólogo en Ciberseguridad, un apacionado
+    en la búsqueda continua de vulnerabilidades ,la 
+    mitigación y remediación de las mismas, especia-
+    lizado en el Pentesting y Hacking Ético.
+  # location:
+  #   address: ""
+  #   postalCode: ""
+  #   city: ""
+  #   countryCode: ""
+  #   region: ""
+  profiles:
+    - network: "Github"
+      username: "4xel"
+      url: "https://helper593.github.io/"
+    - network: "LinkedIn"
+      username: "Jhon Carlos Lara"
+      url: "https://www.linkedin.com/in/jhoncarloslara/"
+work:
+  - company: "TATA CONSULTANCY SERVICES"
+    position: "Seguridad Informatica"
+    website: "https://www.tcs.com/worldwide"
+    startDate: "2020-01-12"
+    #endDate: ""
+    #summary: >
+      
+    # highlights:
+  #- company: "Samsung Research"
+   # position: "SW Engineer"
+   # website: "https://research.samsung.com/"
+   # startDate: "2020-02-03"
+   # endDate: "2020-12-31"
+   # summary: >
+      
+    # highlights:
+      #- "Software Capacity Building T/F"
+  #- company: "Samsung Research"
+   # position: "Intern"
+   # website: "https://research.samsung.com/"
+   # startDate: "2019-06-24"
+   # endDate: "2019-08-30"
+   # summary: >
+   
+    # highlights:
+      #- "Software engineering internship at Smart Device team."
+      #- "8 week internship to develop smart switch circuit PMU firmware with the purpose of increasing power efficiency."
+  #- company: "LG CNS"
+   # position: "Intern"
+   # website: "https://www.lgcns.co.kr/"
+   # startDate: "2019-01-03"
+   # endDate: "2019-02-28"
+   # summary: >
+   
+   # highlights:
+     # - "Software Engineering Internship at Development Platform team."
+     # - "6 week internship to develop new Enterprise Application Platform pages."
+     # - "Gained better understanding of overall web development."
+  #- company: "Fortify Inc."
+   # position: "Intern"
+   # website: "https://fortify.pro/"
+   # startDate: "2018-07-08"
+   # endDate: "2018-08-24"
+   # summary: >
+   
+    #highlights:
+     # - "Building responsive homepage for 'fortify.pro'."
+     # - "Backend/frontend development and service usage analysis using mongoDB for Gaia Landscape Inc."
+#volunteer:
+ # - organization: "Hanyang Mentoring Program"
+ #   position: "Mentor"
+ #   website: ""
+ #   startDate: "2018-03-02"
+ #   endDate: "2018-12-21"
+ # summary: "Mentoring for the major courses of CSE with juniors"
+   
+   # highlights:
+   #   - "Data Structure; Teaching & helping sophomores on the data structure course."
+   #   - "Database Systems; Teaching & helping sophomores on the database system course."
+   #   - "Awarded 'Hanyang Best Mentor' for mentoring Database Systems course."
+  #- organization: "Hanmille, Foreigner Mentoring Program"
+   # position: "Mentor"
+   # website: ""
+   # startDate: "2014-03-02"
+   # endDate: "2014-12-18"
+   # summary: "Mentoring & helping foreign students to easily adjust to Korea."
+    
+   # highlights:
+# education:
+  # - institution: "Hanyang University, Seoul"
+   # area: "Computer Science & Engineering"
+   # studyType: "Bachelor"
+   # startDate: "2014-03-02"
+   # endDate: "2020-02-21"
+   # gpa: "4.0 (major 4.28) / 4.5"
+   # courses:
+    #  - "Concurrent Programming"
+    #  - "Data Science"
+    #  - "Operating Systems"
+    #  - "Computer Architecture"
+    #  - "Database Systems"
+    #  - "System Programming"
+      
+  #- certificate: "Offensive Security Certified Professional (OSCP)"
+  # date: "2023"
+  #- certificate: "Ethical Hacker (CEH)"
+  #  date: "2023"
+      
+#projects:
+ # - title: "Bw-Tree Performance Boosting"
+ #   startDate: "2018-08-01"
+ #   endDate: "2019-10-31"
+ #   summary: "Evaluating cache / multi thread Performance of <a href='https://github.com/wangziqi2013/BwTree'>Open Bw-Tree</a> to find bottleneck and improvement performance."
+ #   url: "https://lazyren.github.io/tag-bwtree/"
+ 
+ #   highlights:
+  #    - "Implementing update function based on the <a href='https://hyeontaek.com/papers/openbwtree-sigmod2018.pdf'>page</a>."
+  #    - "Make update function atomic & reduce call of traverse function."
+  #    - "Design TaS implemented Bw-Tree instead of CaS to reduce the overhead of failed CaS operations."
+  
+  #- title: "Wait-free Snapshot with Epoch Based Garbage Collection"
+   # startDate: "2019-10-01"
+   # endDate: "2019-10-31"
+   # summary: "Concurrent Programming Course"
+   # url: "https://github.com/LazyRen/2019-Concurrent-Programming/tree/master/project3"
+    
+   # highlights:
+    #  - "Implementing Wait-free Snapshot based on the textbook 'The Art of Multiprocessor Programming'"
+    #  - "Concurrent update & scan function implemented"
+    #  - "Implement epoch based garbage collection to prevent memory leak & concurrent GC."
+#  - title: "Enhanced xv6"
+ #   startDate: "2018-03-02"
+ #   endDate: "2018-06-22"
+ #   summary: "Operating System Course"
+ #   url: "https://github.com/LazyRen/2018-Operating-Systems"
+    
+    # highlights:
+     # - "Implement MLFQ & Stride scheduling instead of round robin scheduling."
+     # - "Implement Light Weight Process that can be used with most of POSIX-thread functions."
+     # - "Implement 'triple indirect block addressing' to support large file upto 1030 MB original limitation was 70 KB."
+
+#awards:
+ # - title: "Hanyang Academic Achievement Award"
+  #  awarder: "Hanyang Univ."
+   # highlights:
+    #  - "2018, 2nd semester"
+    #  - "2017, 2nd semester(Highest Honor)"
+  #- title: "Hanyang Brain Scholarship"
+   # awarder: "Hanyang Univ."
+    #highlights:
+     # - "2019, 1st semester"
+      #- "2018, 1st/2nd semester"
+      #- "2017, 2nd semester"
+  #- title: "Win 2nd place in advanced group"
+  #  date: "2018-11-17"
+   # awarder: "Hanyang Collegiate Programming Contest 2018"
+   # summary: ""
+  #- title: "Win 4th place in advanced group"
+    #date: "2017-12-09"
+   # awarder: "Hanyang Collegiate Programming Contest 2017"
+   # summary: ""
+  #- title: "Advanced to final competition"
+    #date: "2017-09-09"
+    #awarder: "Kakao Code Festival 2017"
+    #summary: ""
+# publications:
+#   - name: "Video compression for 3d media"
+#     publisher: "Hooli"
+#     releaseDate: "2014-10-01"
+#     website: "https://en.wikipedia.org/wiki/Silicon_Valley_(TV_series)"
+#     summary: "Innovative middle-out compression algorithm that changes the way we store data."
+skills:
+  - name: "Pentesting"
+    level: "Alto"
+    #keywords:
+     # - "Concurrent Programming"
+     # - "C/C++"
+     # - "Rust"
+  - name: "Hacking Etico"
+    level: "Alto"
+  - name: "Bash"
+    level: "Intermedio"
+    #keywords:
+     # - "HTML"
+     # - "CSS"
+     # - "Javascript"
+  - name: "Python"
+    level: "Intermedio"
+    #keywords:
+     # - "Leadership"
+      #- "Affable"
+languages:
+  - language: "Español"
+    fluency: "Native speaker"
+  - language: "English"
+    fluency: "Fluent"
+interests:
+  - name: "Hobbies"
+    keywords:
+      - "Guitarra"
+      #- ""
+      #- "Cycling"
+  - name: "Libros"
+    keywords:
+      - "J. R. R. Tolkien"
+      - "G. R. R. Martin"
+      #- ""
+  - name: "Juegos"
+    keywords:
+      - "Hearstone"
+      - "Call of Dutty:Mobile"
+      #- ""
+# references:
+#   - name: "Erlich Bachman"
+#     reference: >
+#       It is my pleasure to recommend Richard, his performance working as a consultant for Main St.
+#       Company proved that he will be a valuable addition to any company.
+
+# <https://jsonresume.org/>
