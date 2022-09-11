@@ -212,28 +212,28 @@ disqus:                #4xL
 # You must install utterances github app before use.(https://github.com/apps/utterances)
 # Make sure all variables are set properly. Check below link for detail.
 # https://utteranc.es/
-# utterances:
-#   repo:                "LazyRen/LazyRen.github.io"
-#   issue-term:          "pathname"
-#   label:               "Comments"
-#   theme:               "photon-dark"
+utterances:
+   repo:                "https://utteranc.es/client.js"
+   issue-term:          "pathname"
+   label:               "Comments"
+   theme:               "dark-blue"
 
 # You must install giscus github app before use.(https://github.com/apps/giscus)
 # Make sure all variables are set properly. Check below link for detail.
 # https://giscus.vercel.app/
-giscus:
-   repo:                "https://giscus.app/client.js"
-   repo-id:             "R_kgDOHSynkQ"
-   category:            "General"
-   category-id:         "DIC_kwDOHSynkc4CO-Pv"
-   mapping:             "pathname"
-   reaction-enabled:    "1"
-   data-emit-metadata:  "0"
-   theme:               "dark_protanopia"
-   data-lang:           "es"
-   crossorigin:         "anonymous"
+#giscus:
+ # repo:                "https://giscus.app/client.js"
+ # repo-id:             "R_kgDOHSynkQ"
+ # category:            "General"
+ # category-id:         "DIC_kwDOHSynkc4CO-Pv"
+ # mapping:             "pathname"
+ # reaction-enabled:    "1"
+ # data-emit-metadata:  "0"
+ # theme:               "dark_protanopia"
+ # data-lang:           "es"
+ # crossorigin:         "anonymous"
 
-lightbox:              true
+lightbox:             true
 
 # Hydejack Settings
 # ----------------------------------------------------------------------------------------
