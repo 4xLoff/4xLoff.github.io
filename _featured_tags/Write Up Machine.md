@@ -1,8 +1,8 @@
 ---
 layout: tag-list
 type: tag
-title: Write Up Machines
-slug: Write Up Machines
+title: Write Up Machine
+slug: Write-Up-Machine
 category: HTB
 sidebar: true
 order: 2
