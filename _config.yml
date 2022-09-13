@@ -213,7 +213,7 @@ disqus:                #4xL
 # Make sure all variables are set properly. Check below link for detail.
 # https://utteranc.es/
 utterances:
-   repo:                "https://utteranc.es/client.js"
+   repo:                "4xLoff/4xLoff.github.io"
    issue-term:          "pathname"
    label:               "Comments"
    theme:               "dark-blue"
