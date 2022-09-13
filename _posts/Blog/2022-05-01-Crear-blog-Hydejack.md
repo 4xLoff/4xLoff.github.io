@@ -296,6 +296,7 @@ remoto para que se publique debemos hacer los siguentes comandos:
 bundle install
 ```
 inicia las dependecias,debe asegurarse estar en el directorio donde _config.yml se encuentra. 
+
 Antes de ejecutar por primera vez.
 {:.note}
 

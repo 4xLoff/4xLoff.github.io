@@ -2,7 +2,7 @@
 layout: tag-list
 type: tag
 title: OSCP
-slug: OCSP
+slug: OSCP
 category: HTB
 sidebar: true
 order: 3

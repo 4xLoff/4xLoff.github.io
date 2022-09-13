@@ -3,7 +3,7 @@ layout:   post
 title:    "Write Up Netmon."
 subtitle: "Starting-Point"
 category:   HTB
-tags:      [Write Up Machine, Starting-Point, Easy, Windows, FTP, CVE, RCE] 
+tags:      [Easy, Windows, FTP, CVE, RCE, Weak-Authentication, Write-Up-Machine, Starting-Point] 
 ---
 ![list](/assets/img/netmon/Captura de pantalla (142).png){:.lead width="800" height="100" loading="lazy"}
 
@@ -140,7 +140,7 @@ en el ftp esta en codigo html lo cual podemos decodearlo en la terminal o via we
 [codebeautify]: https://codebeautify.org/html-decode-string
 
 ***
-## Explotacion y Escalacion de privileguios
+## Explotacion y Escalacion de privilegios
 
 Tenemos varias formas de explotar obtener la flag root pero vamos a ver tres.
 
@@ -150,11 +150,11 @@ es usar el exploit de github el cual nos dice que nesesitamos la cookie de secci
 
 interceptamos con burpsuite.
 
-![list](/assets/img/netmon/Kali-2022-09-09-17-24-33.png){:.lead width="800" height="100" loading="lazy"}
+![list](/assets/img/netmon/Kali-2022-09-09-17-33-04.png){:.lead width="800" height="100" loading="lazy"}
 Interceptar la cookie.
 {:.note}
 
-![list](/assets/img/netmon/Kali-2022-09-09-17-33-04.png){:.lead width="800" height="100" loading="lazy"}
+![list](/assets/img/netmon/Kali-2022-09-09-17-34-35.png){:.lead width="800" height="100" loading="lazy"}
 El exploit lo que hace es que crea o injecta un  usuario y pass para el usuario root.
 {:.note}
 
@@ -205,5 +205,6 @@ Ya seria diriguirse a la  ruta donde guardamos el recurso en el FTP.
 {:.centered}
 ***
 
-Continue with [Beginner Track](2022-09-12-Beginner%20Track.md){:.heading.flip-title}
+Back to [Beginner Track](2022-09-12-Beginner-Track.md){:.heading.flip-title}
 {:.read-more}
+
