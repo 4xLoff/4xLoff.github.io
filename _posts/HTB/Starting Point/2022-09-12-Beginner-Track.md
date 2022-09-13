@@ -7,7 +7,7 @@ tags:      Track Easy
 ---
 ![list](/assets/img/BeginnerTrack/BeginnerTrack.jpg){:.lead width="800" height="100" loading="lazy"}
 
-Es una ruta de aprendisage para principiantes.
+Es una ruta de aprendizage para principiantes.
 
 ***
 <!--more-->
