@@ -4,13 +4,16 @@ basics:
   picture: /assets/img/seattle.png
   email: "jesiel1990arthas@gmail.com"
   phone: "(+593) 0992802922"
-  website: "https://helper593.github.io/"
+  website: "https://4xloff.github.io/"
   summary: >
     Hola mi nombre es Jhon mas conocido como 4xeL.
     Soy Tecnólogo en Ciberseguridad, un apacionado
     en la búsqueda continua de vulnerabilidades ,la 
     mitigación y remediación de las mismas, especia-
     lizado en el Pentesting y Hacking Ético.
+
+    Entusiasta de la reslolucion de CTF’s como de la 
+    paginas de Hack The Box o Try Hack Me entre otras.
   # location:
   #   address: ""
   #   postalCode: ""
@@ -20,7 +23,7 @@ basics:
   profiles:
     - network: "Github"
       username: "4xel"
-      url: "https://helper593.github.io/"
+      url: "https://github.com/4xLoff"
     - network: "LinkedIn"
       username: "Jhon Carlos Lara"
       url: "https://www.linkedin.com/in/jhoncarloslara/"

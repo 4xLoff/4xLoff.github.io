@@ -2,16 +2,16 @@
 # Must be the same as `author` in `_config.yml`.
 # Change `author1` to your shortname.
 author1:
-  name:              4xeL
+  name:              4xL
   email:             jesiel1990arthas@gmail.com
 
   # Used at the bottom of each page and at the top of the `about` layout
   # Markdown enabled, can use multiple paragraphs (enabled by `|`)
   about:             |
     Experto en Cibesseguridad.<br>
-    Por favor comprueba mi [resume]<br>
+    Por favor comprueba mi [resumen]<br>
 
-    [resume]: /resume/
+    [resumen]: /resume/
 
   # This photo will be used in the about section
   picture:
@@ -26,7 +26,7 @@ author1:
   # Rearrange to change the order in which they appear
   social:
     linkedin:          https://www.linkedin.com/in/jhoncarloslara/
-    github:            https://github.com/HELPER593
+    github:            https://github.com/4xLoff
     #stackoverflow:  
     email:             jesiel1990arthas@gmail.com
     # rss:             https://lazyren.github.io/feed.xml
