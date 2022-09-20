@@ -1,11 +1,10 @@
 ---
-layout: tag-list
-type: tag
+layout: list
+type: category
 title: OSCP
 slug: OSCP
-category: HTB
 sidebar: true
-order: 3
+order: 4
 description: >
     Certificacion Pepa.
 ---

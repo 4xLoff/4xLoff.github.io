@@ -3,8 +3,8 @@ layout: list
 type: category
 title: Try Hack Me
 slug: THM
-sidebar: False
+sidebar: true
 order: 3
 description: >
-  Es una plataforma web en la que podremos aprender hacking desde 0.
+  Es una plataforma online gratuita para aprender ciberseguridad, mediante ejercicios prácticos y laboratorios, ¡todo a través de tu navegador!
 ---

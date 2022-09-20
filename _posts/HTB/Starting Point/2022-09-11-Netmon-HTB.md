@@ -57,7 +57,7 @@ vulnerabilidades.
 Esto lo hacemos con el siguiente comando.
 
 ```bash
-nmap -p22,8080 -sV -sC 10.10.10.152 -oN target
+nmap -p21,135,139,445,5985,47001,49664,49665,49666,49667,49668,49669 -sV -sC 10.10.10.152 -oN target
 ```
 El paso anterior no es nesesario ser (root).
 {:.note title="Attention"}
