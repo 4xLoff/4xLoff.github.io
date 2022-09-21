@@ -63,7 +63,7 @@ El paso anterior no es nesesario ser (root).
 {:.note title="Attention"}
 
 ***
-### Investigación
+## Analisis de vulnerabilidades
 
 Uso de Investigacion web, Google Hacking,Google Dorks.
 
@@ -88,8 +88,7 @@ Tambien si nos vamos a ala web vemos que temenos la capacidad de loogearnos lo c
 
 probar usar contraseñas por defecto bucando por internet.
 
-***
-## Analisis de vulnerabilidades
+
 
 Si busacmo en internet por path traversal windows presseler o o buscando manualmente en el ftp 
 
