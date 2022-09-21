@@ -5,7 +5,7 @@ subtitle: "Starting-Point"
 category:   Blog
 tags:      [Track,Easy,Windows,Kerberoasting,ASREPRoast,BloodHound,RCP,EvilWinRM,SMB,Active-Directory,Starting-Point,OSCP,OSEP]
 ---
-![list](/assets/img/ad/ad.png){:.lead width="800" height="100" loading="lazy"}
+![list](/assets/img/ad/microsoft-active-directory-1080x501.jpg){:.lead width="800" height="100" loading="lazy"}
 
 Es una ruta de aprendizage para principiantes.
 
