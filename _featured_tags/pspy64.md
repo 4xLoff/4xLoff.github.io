@@ -2,7 +2,7 @@
 layout: tag-list
 type: tag
 title: pspy64
-slug: PSPY64
+slug: pspy64
 category: HTB
 sidebar: false
 description: >
