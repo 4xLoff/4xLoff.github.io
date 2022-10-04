@@ -3,7 +3,7 @@ layout:   post
 title:    "Walkthrough Pickle Rick."
 subtitle: "Starting-Point"
 category:   THM
-tags:      [Easy, Linux, GTFOBins, Enumeration, Walkthrough, Starting-Point]
+tags:      [Easy,Linux,GTFOBins,Enumeration,Walkthrough,Starting-Point]
 ---
 ![list](/assets/img/rick/rick2.png){:.lead width="800" height="100" loading="lazy"}
 

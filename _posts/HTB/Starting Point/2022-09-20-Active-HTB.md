@@ -3,7 +3,7 @@ layout:   post
 title:    "Write Up Active"
 subtitle: "Starting-Point"
 category:   HTB
-tags:      [Easy, Windows, Kerberoasting, gpp-decrypt, SMB, Active-Directory, Write-Up-Machine, Starting-Point, OSCP, OSEP]
+tags:      [Easy,Windows,Kerberoasting,gpp-decrypt,SMB,Active-Directory,Write-Up-Machine,Starting-Point,OSCP,OSEP]
 ---
 ![list](/assets/img/active/active.png){:.lead width="800" height="100" loading="lazy"}
 

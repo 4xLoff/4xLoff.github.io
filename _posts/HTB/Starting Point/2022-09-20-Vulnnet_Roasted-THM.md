@@ -3,7 +3,7 @@ layout:   post
 title:    "Walkthrough VulnNet: Roasted."
 subtitle: "Starting-Point"
 category:   THM
-tags:      [Easy, Windows, ASREPRoast, Kerberoasting, Windows-Server, Active-Directory, Walkthrough, Starting-Point,OSCP,EvilWinRM]
+tags:      [Easy,Windows,ASREPRoast,Kerberoasting,Windows-Server,Active-Directory,Walkthrough,Starting-Point,OSCP,EvilWinRM]
 ---
 ![list](/assets/img/vulnnet/vulnnet.png){:.lead width="800" height="100" loading="lazy"}
 

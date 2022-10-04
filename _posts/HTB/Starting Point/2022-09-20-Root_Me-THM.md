@@ -3,7 +3,7 @@ layout:   post
 title:    "Walkthrough RootMe."
 subtitle: "Starting-Point"
 category:   THM
-tags:      [Easy, Linux, GTFOBins, Enumeration, PHP, Reverse-Shell, Walkthrough, Starting-Point]
+tags:      [Easy,Linux,GTFOBins,Enumeration,PHP,Reverse-Shell,Walkthrough,Starting-Point]
 ---
 ![list](/assets/img/rootme/rootme.png){:.lead width="800" height="100" loading="lazy"}
 

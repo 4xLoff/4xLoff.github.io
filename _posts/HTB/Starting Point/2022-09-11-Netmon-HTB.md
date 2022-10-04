@@ -3,7 +3,7 @@ layout:   post
 title:    "Write Up Netmon."
 subtitle: "Starting-Point"
 category:   HTB
-tags:      [Easy, Windows, FTP, CVE, RCE, Weak-Authentication, Write-Up-Machine, Starting-Point] 
+tags:      [Easy,Windows,FTP,CVE,RCE,Weak-Authentication,Write-Up-Machine,Starting-Point] 
 ---
 ![list](/assets/img/netmon/Captura de pantalla (142).png){:.lead width="800" height="100" loading="lazy"}
 

@@ -3,7 +3,7 @@ layout:   post
 title:    "Write Up Intelligence."
 subtitle: "Starting-Point"
 category:   HTB
-tags:      [Medium,Windows,Kerberoasting,ASREPRoast,BloodHound,PDFtotext,RCP,EvilWinRM,SMB,Active-Directory,Write-Up-Machine,Starting-Point, OSCP, OSEP]
+tags:      [Medium,Windows,Kerberoasting,ASREPRoast,BloodHound,PDFtotext,RCP,EvilWinRM,SMB,Active-Directory,Write-Up-Machine,OSCP,OSEP]
 ---
 ![list](/assets/img/intelligence/intell.png){:.lead width="800" height="100" loading="lazy"}
 

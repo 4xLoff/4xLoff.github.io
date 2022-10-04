@@ -3,7 +3,7 @@ layout:   post
 title:    "Write Up Forest."
 subtitle: "Starting-Point"
 category:   HTB
-tags:      [Easy,Windows,Kerberoasting,PowerView,ASREPRoast,BloodHound,SharpHound,Ldap,RCP,EvilWinRM,SMB,Active-Directory,Write-Up-Machine,             Starting-Point, OSCP, OSEP]
+tags:      [Easy,Windows,Kerberoasting,PowerView,ASREPRoast,BloodHound,SharpHound,Ldap,RCP,axfr,EvilWinRM,SMB,Active-Directory,Write-Up-Machine,           Starting-Point,OSCP,OSEP]
 ---
 ![list](/assets/img/forest/forest.png){:.lead width="800" height="100" loading="lazy"}
 
