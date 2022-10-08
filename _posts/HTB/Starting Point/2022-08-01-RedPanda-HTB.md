@@ -152,7 +152,7 @@ que queremos.
 
 [Blog]: https://www.acunetix.com/blog/web-security-zone/exploiting-ssti-in-thymeleaf/
 
-Todos los anteriores estan en lista negra asi que ponemos \*{{7*7}} para que funcione. 
+Todos los anteriores estan en lista negra asi que ponemos \{\{7*7\}\} para que funcione. 
 {:.note}
 
 ***

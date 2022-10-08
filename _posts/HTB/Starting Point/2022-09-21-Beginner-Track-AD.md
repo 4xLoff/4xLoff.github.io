@@ -3,7 +3,7 @@ layout:   post
 title:    "Beginner Track Active Directory"
 subtitle: "Starting-Point"
 category:   Blog
-tags:      [Track,Easy,Windows,Kerberoasting,ASREPRoast,BloodHound,RCP,EvilWinRM,SMB,Active-Directory,Starting-Point,OSCP,OSEP]
+tags:      [Track,Easy,Windows,Active-Directory,Starting-Point,OSCP,OSEP]
 ---
 ![list](/assets/img/ad/AD.jpg){:.lead width="800" height="100" loading="lazy"}
 
@@ -38,6 +38,14 @@ Continue with [Write Up Forest.](2022-09-20-Forest-HTB.md){:.heading.flip-title}
 ![list](/assets/img/blue/blue.png){:.lead width="800" height="100" loading="lazy"}
 
 Continue with [Write Up Blue.](2022-09-11-Blue-HTB.md){:.heading.flip-title}
+{:.read-more}
+
+***
+## Write Up Support
+
+![list](/assets/img/support/support.png){:.lead width="800" height="100" loading="lazy"}
+
+Continue with [Write Up Support.](2022-09-11-Blue-HTB.md){:.heading.flip-title}
 {:.read-more}
 
 ***
