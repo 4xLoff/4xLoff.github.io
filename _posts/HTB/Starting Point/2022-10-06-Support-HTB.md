@@ -17,9 +17,7 @@ tags:      [Easy,Windows,TGT,PowerView,Ldap,EvilWinRM,SMB,Active-Directory,Write
 
 ## Reconocimiento
 
-Fase inicial donde recolectamos toda la información posible del objetivo, utilizando 
-
-diferentes técnicas como:
+Fase inicial donde recolectamos toda la información posible del objetivo, utilizando diferentes técnicas como:
 
 | Caracter.                                   |
 |:--------------------------------------------|
@@ -47,11 +45,7 @@ El paso anterior se debe hacer con privileguios (root).
 ***
 ### Servicios y versiones
 
-Una vez sabemos que puertos estan abiertos con el comando anterior podremos saber que 
-
-versiones y servicios que corren en los mismo de ahi podremos determinara posibles 
-
-vulnerabilidades.
+Una vez sabemos que puertos estan abiertos con el comando anterior podremos saber que versiones y servicios que corren en los mismo de ahi podremos determinara posibles vulnerabilidades.
 
 Esto lo hacemos con el siguiente comando.
 
@@ -66,11 +60,7 @@ El paso anterior no es nesesario ser (root).
 ***
 ## Analisis de vulnerabilidades
 
-Con todos esos puetos abiertos es pisible asumir que estamos frente a un `Domain Controler`
-
-imediatamente lo que debemos hacer es tratar de explotar el smb,esto lo hacemos con 
-
-crackmapexec, smbclient,smbmap entre otros .
+Con todos esos puetos abiertos es pisible asumir que estamos frente a un `Domain Controler` imediatamente lo que debemos hacer es tratar de explotar el smb,esto lo hacemos con crackmapexec, smbclient,smbmap entre otros .
 
 Con crackmapexec vemos si el smb esta firmado ademas del dominio entre ota informacion.
 
@@ -94,9 +84,7 @@ smbmap -H 10.10.11.174 -u guest -R
 {:.note}
 Listamos los shares y vemos el contenido recursivamente.
 
-Vemos el recurso support-tools el cual contiene ciertos archivos pero tiene un archivo muy
-
-interesante llamado UserInfo.exe.zip, lo descargamos.
+Vemos el recurso support-tools el cual contiene ciertos archivos pero tiene un archivo muy interesante llamado UserInfo.exe.zip, lo descargamos.
 
 ![list](/assets/img/support/Parrot-SO3-2022-08-23-16-48-46.png){:.lead width="800" height="100" loading="lazy"}
 
@@ -104,13 +92,7 @@ Miramos el contenido podemos ver un exe y varios dll, analizaremos el archivo .e
 
 ![list](/assets/img/support/Parrot-SO3-2022-08-23-16-50-33.png){:.lead width="800" height="100" loading="lazy"}
 
-Analizandolo con dnSpy podemos ver Protected entre otras cosas
-
-Si miramos el .cctor() podemos encontrar una cadena llamada enc_password y una key, ahora en 
-
-getPassword() podemos encontrar la manera de decodear la cadena y podemos hacerlo facilmente 
-
-con python y obtenemos la cadena decodeada.
+Analizandolo con dnSpy podemos ver Protected entre otras cosas y si miramos el .cctor() podemos encontrar una cadena llamada enc_password y una key, ahora en getPassword() podemos encontrar la manera de decodear la cadena y podemos hacerlo facilmente con python y obtenemos la cadena decodeada.
 
 ![list](/assets/img/support/Parrot-SO3-2022-08-23-19-14-36.png){:.lead width="800" height="100" loading="lazy"}
 
@@ -139,15 +121,19 @@ ldapsearch -D support\\ldap -H ldap://10.10.11.174 -w 'nvEfEK16^1aM4$e7AclUf8x$t
 {:.note}
 Grepeamos los usuarios para extraerlos y usarlos mas  adelante.
 
+
+
 Utilizamos Crackmapexec para validar el usrio y contraneña.
 
 ```bash
 crackmapexec winrm 10.10.11.174 -u users.txt -p Ironside47pleasure40Watchful
 ```
+
+
 {:.note}
 El usuario valido es `support`.
 
-El usuario support es válido, nos conectamos con evil-winrm y podemos leer la flag
+El usuario support es válido, nos conectamos con evil-winrm y podemos leer la flag.
 
 ![list](/assets/img/support/Parrot-SO3-2022-08-23-20-26-35.png){:.lead width="800" height="100" loading="lazy"}
 
@@ -163,20 +149,16 @@ buscamos la flag de usuario `type ..\Desktop\user.txt`.
 ***
 ## Explotacion
 
-Siempre es bueno ejecutar `WimEnum` Y `ADEnum` para monitorizar y ver los posibles 
+Siempre es bueno ejecutar `WimEnum` Y `ADEnum` para monitorizar y ver los posibles vectores para escalar de privilegios.
 
-vectores para escalar de privilegios.
-
-En este caso vamos a enumerar posibles vectores para escalar privileguios con bloodHound
+En este caso vamos a enumerar posibles vectores para escalar privileguios con bloodHound.
 
 ```bash
 neo4j console
 ```
 
 {:.note}
-Arrancamos neo4j que comparte un servicio por el puero 4747 y te loogeas si ya los 
-
-has hecho habres el bloodhound.
+Arrancamos neo4j que comparte un servicio por el puero 4747 y te loogeas si ya los has hecho habres el bloodhound.
 
 ```bash
 bloodhound &> /dev/null & disown
@@ -186,15 +168,9 @@ bloodhound &> /dev/null & disown
 Independizamos el proceso.
 
 
-Nos arroga un archivo.zip que luego no lo pasamos a la maquina atacate y de ahi lo 
+Nos arroga un archivo.zip que luego no lo pasamos a la maquina atacate y de ahi lo cargamos en el `bloodhound` para interpetar los datos, podemos ver que support tiene el GenericAll expuesto.
 
-cargamos en el `bloodhound` para interpetar los datos, podemos ver que support tiene 
-
-el GenericAll expuesto.
-
-Podemos  aprovecharnos de la vulnerabilidad de [Constrained-Delegation] y seguir los 
-
-pasos de el siguiente artículo para escalar.
+Podemos  aprovecharnos de la vulnerabilidad de [Constrained-Delegation] y seguir los pasos de el siguiente artículo para escalar.
 
 [Constrained-Delegation]: https://www.ired.team/offensive-security-experiments/active-directory-kerberos-abuse/resource-based-constrained-delegation-ad-computer-object-take-over-and-privilged-code-execution
 
@@ -273,9 +249,7 @@ $SD.GetBinaryForm($SDBytes, 0)
 Get-DomainComputer dc | Set-DomainObject -Set @{'msds-allowedtoactonbehalfofotheridentity'=$SDBytes}
 ```
 
-En el punto final mas que jugar con rubeus para obtener el `Ticket Granting silver` podemos hacerlo con 
-
-impacket.
+En el punto final mas que jugar con rubeus para obtener el `Ticket Granting silver` podemos hacerlo con impacket.
 
 ```powershell
 impacket-getST support.htb/test:test123 -dc-ip 10.10.11.174 -impersonate administrator -spn www/dc.support.htb

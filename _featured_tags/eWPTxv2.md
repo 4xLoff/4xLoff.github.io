@@ -1,8 +1,8 @@
 ---
 layout: tag-list
 type: tag
-title: eWPTxv2
-slug: eWPTxv2
+title: eWPTx
+slug: eWPTx
 category: Blog
 sidebar: false
 description: >

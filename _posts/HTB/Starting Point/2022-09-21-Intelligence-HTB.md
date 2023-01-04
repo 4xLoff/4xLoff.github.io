@@ -17,9 +17,7 @@ tags:      [Medium,Windows,Kerberoasting,ASREPRoast,BloodHound,PDFtotext,RCP,Evi
 
 ## Reconocimiento
 
-Fase inicial donde recolectamos toda la información posible del objetivo, utilizando 
-
-diferentes técnicas como:
+Fase inicial donde recolectamos toda la información posible del objetivo, utilizando diferentes técnicas como:
 
 | Caracter.                                   |
 |:--------------------------------------------|
@@ -47,11 +45,7 @@ El paso anterior se debe hacer con privileguios (root).
 ***
 ### Servicios y versiones
 
-Una vez sabemos que puertos estan abiertos con el comando anterior podremos saber que 
-
-versiones y servicios que corren en los mismo de ahi podremos determinara posibles 
-
-vulnerabilidades.
+Una vez sabemos que puertos estan abiertos con el comando anterior podremos saber que versiones y servicios que corren en los mismo de ahi podremos determinara posibles vulnerabilidades.
 
 Esto lo hacemos con el siguiente comando.
 
@@ -68,23 +62,13 @@ El paso anterior no es nesesario ser (root).
 ***
 ## Analisis de vulnerabilidades
 
-Uso de Investigacion web, Google Hacking,Google Dorks.
+Uso de Investigacion web, Google Hacking,Google Dorks y recopilación de información gracias a servicios de terceros.
 
-Recopilación de información gracias a servicios de terceros.
-
-Con todos esos puetos abiertos es pisible asumir que estamos frente a un `Domain Controler`
-
-Investigamos el servicio http que corre en el pueto 80, podemos usar `wapalizzer` para 
-
-ver que tecnologias usa la pagina asi como desde el terminal `whatweb` al hacer 
-
-`crtl+ u` no encontramos nada. 
+Con todos esos puetos abiertos es pisible asumir que estamos frente a un `Domain Controler` Investigamos el servicio http que corre en el pueto 80, podemos usar `wapalizzer` para ver que tecnologias usa la pagina asi como desde el terminal `whatweb` al hacer `crtl+ u` no encontramos nada. 
 
 ![list](/assets/img/intelligence/Kali-2022-09-09-23-22-08.png){:.lead width="800" height="100" loading="lazy"}
 
-Con todos esos puetos abiertos imediatamente lo que debemos hacer es tratar de explotar 
-
-el smb,esto lo hacemos con crackmapexec, smbclient,smbmap entre otros .
+Con todos esos puetos abiertos imediatamente lo que debemos hacer es tratar de explotar el smb,esto lo hacemos con crackmapexec, smbclient,smbmap entre otros.
 
 Con crackmapexec vemos si el smb esta firmado ademas del dominio entre ota informacion.
 
@@ -104,15 +88,9 @@ smbclient -L 10.10.10.161 -N
 {:.note}
 No podemos listar los shares.
 
-Enumerando la pagina web hay dos archivos pdf que no tieneninformacion relevante pero 
+Enumerando la pagina web hay dos archivos pdf que no tieneninformacion relevante pero con la herramienta exiftool para en la metadata hay informacion que podamos aprovechar decara ala resolucion de la misma.
 
-con la herramienta exiftool para en la metadata hay informacion que podamos aprovechar 
-
-decara ala resolucion de la misma.
-
-En pricipio nos decargamos los dos y exminamos con exiftool los pdf's pero quien nos 
-
-dice queno puede haber mas.
+En pricipio nos decargamos los dos y exminamos con exiftool los pdf's pero quien nos dice queno puede haber mas.
 
 ```bash
 exiftool 2020-01-01-upload.pdf
@@ -131,11 +109,7 @@ exiftool 2020-12-15-upload.pdf
 Jose.Williams es el usuario que encontramos.
 
 {:.note title="Attention"}
-Como sospechava hay mas pdf esto es deducible por la fechas de lo pdf asi que con one-liner 
-
-vamos hacer una itercion para obtener todo los pdf posibles que esten en el servido de la 
-
-siguiente manera.
+Como sospechava hay mas pdf esto es deducible por la fechas de lo pdf asi que con one-liner vamos hacer una itercion para obtener todo los pdf posibles que esten en el servido de la siguiente manera.
 
 ```bash
 for i in {2020..2022}; do for j in {01..12};do for k in {01..31};do echo "http://10.10.10.248/documents/$i-$j-$k-upload.pdf"; done; done; done | xargs -n 1 -P 20 wget
@@ -154,13 +128,7 @@ exiftool *.pdf | grep "Creator" | awk 'NF{print $NF}' > users.txt
 {:.note}
 Hay un total de 30 pdf con nombres de usuario que meteremo en users.txt.
 
-Con los usuarios que obtubimos anteriormente podemos grepearlos o simplmente copiarlos y 
-
-meterlos aun archivo txt llamado users.txt, y procedemos con el ataque ASREPRoast para esto 
-
-podemos usar `kerbrute`, al caul al listado de usuario debemos agregarle el `@intelligence.htb`, 
-
-en este caso vamos usar [GetNPUsers.py].
+Con los usuarios que obtubimos anteriormente podemos grepearlos o simplmente copiarlos y meterlos aun archivo txt llamado users.txt, y procedemos con el ataque ASREPRoast para esto podemos usar `kerbrute`, al caul al listado de usuario debemos agregarle el `@intelligence.htb`, en este caso vamos usar [GetNPUsers.py].
 
 ![list](/assets/img/intelligence/Kali-2022-09-10-00-24-01.png){:.lead width="800" height="100" loading="lazy"}
 
@@ -180,23 +148,16 @@ GetNPUsers.py intelligence.htb/ -no-pass -userfile users.txt
 {:.note}
 Pero ningun usuario es ASREPRoasteable.
 
-Por lo que haciendo cabeza si en dos pdf hay nombres de usuario quein no nos dice que en
-
-30 no haycredeciales o informacion valiosa.
+Por lo que haciendo cabeza si en dos pdf hay nombres de usuario quein no nos dice que en 30 no haycredeciales o informacion valiosa.
 
 ```bash
 for file in $(ls);do echo $file;done | grep -v "users" | while read filename; do pdftotext "analizando el archivo $filename"; done
 ```
 
-
 {:.note}
-Estamos iterando en cada pdf y trasformadolos a txt para luego encontrar una pass 
+Estamos iterando en cada pdf y trasformadolos a txt para luego encontrar una pass que es `NewIntelligenceCorpUser9876`.
 
-que es `NewIntelligenceCorpUser9876`.
-
-Una ves obtenida la pass y como sabemos que tenemos usuarios validis que verificamos con 
-
-kerbrute hacemos lo siguite para comprovar cual usuario va con esta contraseña.
+Una ves obtenida la pass y como sabemos que tenemos usuarios validis que verificamos con kerbrute hacemos lo siguite para comprovar cual usuario va con esta contraseña.
 
 ![list](/assets/img/intelligence/Kali-2022-09-10-00-56-26.png){:.lead width="800" height="100" loading="lazy"}
 
@@ -207,9 +168,7 @@ crackmapexec smb 10.10.10.248 -u users.txt -p 'NewIntelligenceCorpUser9876'
 {:.note}
 El usuario compatile es `Tiffany.Molina:NewIntelligenceCorpUser9876`.
 
-Podemos probar tambien kerberosting attack ya tenemos el dominio + un usuario + 
-
-una contraseña  podemos probar un ataque [Kerberosting].
+Podemos probar tambien kerberosting attack ya tenemos el dominio + un usuario + una contraseña  podemos probar un ataque [Kerberosting].
 
 [Kerberosting]: https://www.netwrix.com/cracking_kerberos_tgs_tickets_using_kerberoasting.html
 
@@ -244,13 +203,7 @@ rpcclient $> enumdomgroups
 {:.note}
 Enumeramos grupos.
 
-Con `ladapdoamindump` enumaremos los grupos, como el output que nos reporta suele 
-
-se mucho no crearemos otro direcctorio,y luego nos montaremos un servidor con 
-
-python y el cual desde el navegador podremos investigar bien sobre que usuario 
-
-pertenece a que grupo y que privilegios tienen etc.
+Con `ladapdoamindump` enumaremos los grupos, como el output que nos reporta suele se mucho no crearemos otro direcctorio,y luego nos montaremos un servidor con python y el cual desde el navegador podremos investigar bien sobre que usuario pertenece a que grupo y que privilegios tienen etc.
 
 ![list](/assets/img/intelligence/ldump.png){:.lead width="800" height="100" loading="lazy"}
 
@@ -267,9 +220,7 @@ smbmap -H 10.10.10.248 -u 'Tiffany.Molina' -p 'NewIntelligenceCorpUser9876'
 ```
 
 {:.note}
-Tenemos acceso a algunos shares pero vamosa husmear en Users para buscar la flag de user.txt 
-
-bingoo la encontramos.
+Tenemos acceso a algunos shares pero vamosa husmear en Users para buscar la flag de user.txt bingoo la encontramos.
 
 La descargamos con el siguiente comado.
 
@@ -278,9 +229,7 @@ smbmap -H 10.10.10.248 -u 'Tiffany.Molina' -p 'NewIntelligenceCorpUser9876' --do
 ```
 
 {:.note}
-La flag de user.txt es `020cafd6230d6904434ff4f987e0f715`. 
-
-tambien vemos otro archivo interesante que nos podemos decargar para analizarlo.
+La flag de user.txt es `020cafd6230d6904434ff4f987e0f715`, tambien vemos otro archivo interesante que nos podemos decargar para analizarlo.
 
 ![list](/assets/img/intelligence/Kali-2022-09-10-02-11-56.png){:.lead width="800" height="100" loading="lazy"}
 
@@ -292,13 +241,7 @@ smbmap -H 10.10.10.248 -u 'Tiffany.Molina' -p 'NewIntelligenceCorpUser9876' --do
 {:.note}
 Es una tarea cron.
 
-La idea es iyentar un dnsRecord con la herramienta [dnstool.py] beemos tener user y pass con - r 
-
-inyectamos dnsRecord y debe empesar poe web asi lo dice en el script -add para anadirlo y -d 
-
-que es recordata que para que apunte ala ip del atacate osea la vpn para cuando el servidor 
-
-tarmita la peticion ala web se redirija a la maquina atacante de la sigiente forma.
+La idea es iyentar un dnsRecord con la herramienta [dnstool.py] beemos tener user y pass con - r inyectamos dnsRecord y debe empesar poe web asi lo dice en el script -add para anadirlo y -d que es recordata que para que apunte ala ip del atacate osea la vpn para cuando el servidor tarmita la peticion ala web se redirija a la maquina atacante de la sigiente forma.
 
 [dnstool.py]: https://github.com/dirkjanm/krbrelayx
 
@@ -340,16 +283,14 @@ Con la siguente herrmienta vamos arecolectar toda la informacion del DC.
 bloodhound-python -c All -u 'Ted.Graves' -p 'Mr.Teddy' -ns 10.10.10.248 -d intelligence.htb
 ```
 
-En este caso vamos a enumerar posibles vectores para escalar privileguios con bloodHound
+En este caso vamos a enumerar posibles vectores para escalar privileguios con bloodHound.
 
 ```bash
 neo4j console
 ```
 
 {:.note}
-Arrancamos neo4j que comparte un servicio por el puero 4747 y te loogeas si ya los 
-
-has hecho habres el bloodhound.
+Arrancamos neo4j que comparte un servicio por el puero 4747 y te loogeas si ya los has hecho habres el bloodhound.
 
 ```bash
 bloodhound &> /dev/null & disown
@@ -368,9 +309,7 @@ Cargamos todo lo que encontramos [bloodhound-python] en en el bloodhound.
 ![list](/assets/img/intelligence/Kali-2022-09-10-03-29-48.png){:.lead width="800" height="100" loading="lazy"}
 
 {:.note}
-Bloodhound nos dice que debemos atacar GMSA para aquello nos descargamos la herramienta 
-
-[gmsadumper] ya el bloodhound no dice que nesesitamos explotar dicho recurso.
+Bloodhound nos dice que debemos atacar GMSA para aquello nos descargamos la herramienta [gmsadumper] ya el bloodhound no dice que nesesitamos explotar dicho recurso.
 
 [gmsadumper]: https://github.com/micahvandeusen/gMSADumper
 
@@ -383,11 +322,7 @@ python3 gMSADumper.py -u 'Ted.Graves' -p 'Mr.Teddy' -d intelligence.htb -l 10.10
 {:.note}
 Nos da un hash de l secice acount `svc_int$:::10a0f3a718b5c91d0a679de455d8ed51`.
 
-Con vamos a impersonar una cache para autenticarme como usuario administrador, peo antes 
-
-de eso debmos tener el `spn` y para eso vamos usar la herrmaienta `pywerviewy` la usaremos 
-
-de la sigiente forma.
+Con vamos a impersonar una cache para autenticarme como usuario administrador, pero antes de eso debmos tener el `spn` y para eso vamos usar la herrmaienta `pywerviewy` la usaremos de la sigiente forma.
 
 ![list](/assets/img/intelligence/Kali-2022-09-10-03-47-51.png){:.lead width="800" height="100" loading="lazy"}
 
@@ -427,11 +362,7 @@ ntpdate -s 10.10.10.248
 {:.note}
 Al final de la resolucion debmos regresar a nustra hora con `date -s "tu zona horaria u hora"`.
 
-repetimos `getST.py` eso nos devulve un Adminitrator.ccache que deberemos usar con la 
-
-herramienta wmiexec.py trataremos de autenticarnos al domain controler entoces creamos 
-
-una variable de entorno.
+repetimos `getST.py` eso nos devulve un Adminitrator.ccache que deberemos usar con la herramienta wmiexec.py trataremos de autenticarnos al domain controler entoces creamos una variable de entorno.
 
 ```python
 KRB5CCNAME=Administrator.ccache
