@@ -58,6 +58,42 @@ Continue with [Write Up Knife.](2022-12-14-Knife-HTB.md){:.heading.flip-title}
 {:.read-more}
 
 ***
+
+## Write Up Nunchucks
+
+![list](/assets/img/nunchucks/Captura%20de%20pantalla%20(273).png){:.lead width="800" height="100" loading="lazy"}
+
+Continue with [Write Up Nunchucks.](2022-12-24-Nunchucks-HTB.md){:.heading.flip-title}
+{:.read-more}
+
+***
+
+## Write Up Irked
+
+![list](/assets/img/irked/Captura%20de%20pantalla%20(274).png){:.lead width="800" height="100" loading="lazy"}
+
+Continue with [Write Up Irked.](2022-12-28-Irked-HTB.md){:.heading.flip-title}
+{:.read-more}
+
+***
+
+## Write Up Shocker
+
+![list](/assets/img/shocker/Captura%20de%20pantalla%20(275).png){:.lead width="800" height="100" loading="lazy"}
+
+Continue with [Write Up Shocker.](2022-11-28-Shocker-HTB.md){:.heading.flip-title}
+{:.read-more}
+
+***
+
+## Write Up Devel
+
+![list](/assets/img/devel/Captura%20de%20pantalla%20(276).png){:.lead width="800" height="100" loading="lazy"}
+
+Continue with [Write Up Devel.](2022-12-31-Devel-HTB.md){:.heading.flip-title}
+{:.read-more}
+
+***
 ```bash
 🎉 Felicitaciones ya has completado Beginner Track de HackTheBox 🎉
 ```
