@@ -94,6 +94,16 @@ Continue with [Write Up Devel.](2022-12-31-Devel-HTB.md){:.heading.flip-title}
 {:.read-more}
 
 ***
+
+## Write Up Squashed
+
+![list](/assets/img/squashed/Captura%20de%20pantalla%20(279).png){:.lead width="800" height="100" loading="lazy"}
+
+Continue with [Write Up Squashed.](2023-01-02-Devel-HTB.md){:.heading.flip-title}
+{:.read-more}
+
+***
+
 ```bash
 🎉 Felicitaciones ya has completado Beginner Track de HackTheBox 🎉
 ```
