@@ -102,6 +102,14 @@ Continue with [Write Up Devel.](2022-12-31-Devel-HTB.md){:.heading.flip-title}
 Continue with [Write Up Squashed.](2023-01-02-Devel-HTB.md){:.heading.flip-title}
 {:.read-more}
 
+## Write Up Blocky
+
+![list](/assets/img/blocky/Captura%20de%20pantalla%20(287).png){:.lead width="800" height="100" loading="lazy"}
+
+Continue with [Write Up Blocky.](2023-01-06-Devel-HTB.md){:.heading.flip-title}
+{:.read-more}
+
+
 ***
 
 ```bash
